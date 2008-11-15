@@ -1,0 +1,24 @@
+<h1>Listing comments</h1>
+
+<table>
+  <tr>
+    <th>Postcard</th>
+    <th>User</th>
+    <th>Comment</th>
+  </tr>
+
+<% for comment in @comments %>
+  <tr>
+    <td><%=h comment.postcard_id %></td>
+    <td><%=h comment.user_id %></td>
+    <td><%=h comment.comment %></td>
+    <td><%= link_to 'Show', comment %></td>
+    <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
+    <td><%= link_to 'Destroy', comment, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New comment', new_comment_path %>

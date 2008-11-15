@@ -1,0 +1,6 @@
+<% div_for(postcard) do %>
+	<h3><%= link_to postcard.title, postcard %></h3>
+	<p><%= image_tag postcard.photo.url(:thumb) %><%= postcard.description %>
+	<p>Submitted by: <%= postcard.user.login %></p>
+	<p>Tags: <%= postcard.tag_list%> | Votes <%= postcard.votes_count %></p>
+<% end %>

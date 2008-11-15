@@ -1,0 +1,53 @@
+<%= title('Submit a postcard', :h2) %>
+
+<% form_for @postcard, :html => { :multipart => true } do |f| %>
+  <%= f.error_messages %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :year %><br />
+	<%= year_select(f)  %>   
+  </p>
+  <p>Country<br/>
+	<%= country_select(:postcard, :country) %>
+	</p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description, :class => "mceEditor" %>
+
+  <p>
+    <%= f.label :organisation %><br />
+    <%= f.text_field :organisation %>
+  </p>
+  <p>
+    <%= f.label :link %><br />
+    <%= f.text_field :link %>
+  </p>
+  <p>
+    <%= f.label :tips %><br />
+    <%= f.text_area :tips %>
+  </p>
+	<!-- add tags -->
+  <!--><p>
+	<label for="link_tag_list">Tags (seperated by comma): </label><br/>
+	<%= f.text_field(:tag_list) %>
+  </p>-->
+
+  <!-- auto complete tags -->
+  <p>
+	<b>Tags</b><br/>
+		<%= text_field_with_auto_complete :postcard, :tag_list, { :size => 50 }, { :url => formatted_tags_path(:js), :method => :get, :tokens => ',' } %>  
+	</p>
+	   
+  <p>
+    <b>Upload Image</b><br />
+	<%= f.file_field :photo %>  </p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', postcards_path %>

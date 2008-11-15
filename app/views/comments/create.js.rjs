@@ -1,0 +1,2 @@
+page.insert_html :before, 'comments', :partial => "comment", :object => @postcard.comment
+page[:comment_form].reset

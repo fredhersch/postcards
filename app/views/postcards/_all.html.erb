@@ -1,0 +1,36 @@
+<table>
+  <tr>
+	<th></th>
+    <th>Title</th>
+    <th>Year</th>
+    <th>Description</th>
+    <th>Created at</th>
+	<th>Sent from</th>
+    <th>Tags</th>
+	<th>Votes</th>
+  </tr>
+
+<% for postcard in @postcards %>
+  <tr>
+	<td><%= image_tag postcard.photo.url(:thumb) %></td>
+    <td><%= link_to postcard.title, postcard %></td>
+    <td><%=h postcard.year %></td>
+    <td><%= postcard.description %></td>
+    <td><%=h postcard.created_at.to_formatted_s(:rfc822) %></td>
+	<td><%= mail_to postcard.user.login, postcard.user.email %>
+	<td class="tags"><% unless postcard.tag_list.empty? %>
+		<%= render :partial => postcard.tags %>
+		<% end %>
+	</td>
+	<td><%= postcard.votes.size %></td>
+	
+	<% if logged_in? && current_user.id == postcard.user_id %>
+    <td><%= link_to 'Edit', edit_postcard_path(postcard) %></td>
+	<% end %>
+	<% if logged_in? && current_user.has_role?("admin") %>
+    <td><%= link_to 'Edit', edit_postcard_path(postcard) %></td>
+    <td><%= link_to 'Destroy', postcard, :confirm => 'Are you sure?', :method => :delete %></td>
+	<% end %>
+  </tr>
+<% end %>
+</table>

@@ -1,0 +1,14 @@
+<h1>New comment by <%=h current_user.login %></h1>
+
+<% form_remote_for :comment, :url => postcard_comments_path(@postcard), :html => {:id => 'comment_form' } do |f| %>
+  <%= f.hidden_field :postcard_id, :value => @postcard.id %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <%= f.error_messages %>
+  <p>
+    Your comment<br />
+    <%= f.text_area :content %>
+  </p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>

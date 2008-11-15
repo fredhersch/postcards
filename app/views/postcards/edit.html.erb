@@ -1,0 +1,34 @@
+<%= tiny_mce if using_tiny_mce? %>
+
+<h1>Editing postcard</h1>
+
+<% form_for(@postcard) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :year %><br />
+    <%= f.text_field :year %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label :organisation %><br />
+    <%= f.text_field :organisation %>
+  </p>
+  <p>
+    <%= f.label :link %><br />
+    <%= f.text_field :link %>
+  </p>
+  <p>
+    <%= f.label :tips %><br />
+    <%= f.text_area :tips %>
+  </p>  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>

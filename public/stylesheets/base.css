@@ -1,0 +1,118 @@
+/* */
+html body {
+	background: #eee;
+}
+
+#wrapper {
+	width: 950px;
+	margin: 40px auto;
+	border: 2px dashed #333;
+	padding: 10px;
+	background: #fff;
+}
+
+ul#nav {
+	margin: 0 0 20px 0;
+	padding: 0;
+}
+
+ul#nav li {
+	list-style-type: none;
+	display: inline;
+}
+
+#content, #side-bar { 
+	background: #eee;
+}
+
+.tags a { padding: 0 3px; }
+
+/* === FLASH MESSAGES === */
+div#flash-notice {
+  background: aqua;
+  color: #333;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.3em;
+  margin: 10px 5px;
+}
+
+div#flash-warning {
+  background: pink;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.3em;
+  margin: 10px 5px;	
+}
+
+div#flash-error {
+  background: red;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.3em;
+  margin: 10px 5px;
+
+}
+
+
+/* === ERROR MESSAGES === */
+div#errorExplanation {
+	
+}
+
+div#errorExplanation h2 {
+	
+}
+
+div#errorExplanation p {
+	
+}
+
+div#errorExplanation ul {
+	
+}
+
+div#errorExplanation ul li {
+	
+}
+
+/* === FORMS === */
+div.fieldWithErrors {
+	border: 5px solid #f66;	
+}
+
+div.fieldWithErrors label {
+	
+}
+
+div.fieldWithErrors input, div.fieldWithErrors select, 
+div.fieldWithErrors textarea
+{
+	
+}
+
+#vote_score {
+float: right;
+color: #9c9;
+}
+#vote_form {
+margin: 10px 0;
+}
+#vote_form input {
+padding: 3px 5px;
+border: 3px solid #393;
+background-color: #cfc;
+text-decoration: none;
+color: #393;
+}
+#vote_form input:hover {
+background-color: #aea;
+}
+
+.postcard {
+	float: left;
+	width: 50%;
+}
+
+.postcard h3 { margin-bottom: 0; }
+.postcard p { color: #666; }

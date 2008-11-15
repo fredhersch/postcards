@@ -1,0 +1,67 @@
+<%= title('<%= @postcard.title %>', :h2) %>
+<div class="postcard-meta">
+<p>
+  <b>Created by <%= link_to @submitted_by.login, @submitted_by.email %><br/>Created on: <%=h @postcard.created_at.strftime("%d %B %Y") %></b>
+<br/>
+<% unless @postcard.tag_list.empty? %>
+<p class="tags">
+<strong>Tags:</strong>
+<%= render :partial => @postcard.tags %>
+</p>
+<% end %>
+</p>
+<p>
+  <b>Last Updated at:</b>
+  <%=h @postcard.updated_at.strftime("%d %B %Y")  %>
+</p>
+</div>
+
+<%= image_tag @postcard.photo.url(:thumb) %>
+<p>
+  <b>Year:</b>
+  <%=h @postcard.year %>
+</p>
+<p>
+  <b>Description:</b>
+  <%= @postcard.description %>
+</p>
+
+<p>
+  <b>Organisation:</b>
+  <%=h @postcard.organisation %>
+</p>
+
+<p>
+  <b>Link:</b>
+  <%=h @postcard.link %>
+</p>
+
+<p>
+  <b>Tips:</b>
+  <%= @postcard.tips %>
+</p>
+
+<%= image_tag @postcard.photo.url %>
+
+<h3>
+	<span id="vote_score">Score: <%= @postcard.votes.size %></span>
+</h3>
+<div id="vote_form">
+	<% form_remote_tag	:url => postcard_votes_path(@postcard) do %>
+		<%= submit_tag 'shove it' %>
+	<% end %>
+</div>
+<!--
+<div id="comments">
+	<% if @postcard.comments.empty? %>
+		<p>No comments</p>
+	<% else %>
+		<ul>
+		<%= render :partial => "comments/comment", :collection => @postcard.comments %>
+		</ul>
+	<% end %>
+</div>
+<div id="new_comment">
+	<%= render :partial => "comments/new" %>
+</div>
+-->

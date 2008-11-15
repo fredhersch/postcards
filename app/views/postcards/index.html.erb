@@ -1,0 +1,4 @@
+<%= title('All Postcards', :h2) %>
+<h2><%= "Showing #{ pluralize(@postcards.size, 'postcard')}"  %></h2>
+<%= render :partial => 'postcard', :collection => @postcards %>
+<%= will_paginate @postcards %>
