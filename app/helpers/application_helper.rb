@@ -1,5 +1,8 @@
 module ApplicationHelper
   
+  # Helper for generating tag clouds
+  include TagsHelper
+  
   # Sets the page title and outputs title if container is passed in.
   # eg. <%= title('Hello World', :h2) %> will return the following:
   # <h2>Hello World</h2> as well as setting the page title.
@@ -16,5 +19,5 @@ module ApplicationHelper
     end
     messages
   end
-  
+    
 end

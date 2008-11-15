@@ -13,4 +13,8 @@ module PostcardsHelper
     return country_options + options_for_select(COUNTRIES, selected)
   end
   
+  def related_posts(p)
+    return Postcard.find_tagged_with(p.tag_list)
+  end
+    
 end

@@ -2,10 +2,16 @@ class PostcardsController < ApplicationController
   # GET /postcards
   # GET /postcards.xml
   include AuthenticatedSystem
+  include TagsHelper
+  
   # uses_tiny_mce
   before_filter :login_required, :only => [:new, :update]
   require_role :admin, :only => :delete
   uses_tiny_mce :only => [:new, :create, :edit, :update]
+   
+  def tag_cloud
+    @tags = Postcard.tag_counts
+  end
       
   def index
     #@postcards = Postcard.find(:all)
@@ -23,7 +29,8 @@ class PostcardsController < ApplicationController
   def show
     @postcard = Postcard.find(params[:id])
     @submitted_by = User.find_by_id(@postcard.user_id)
-
+    @tags = Postcard.tag_counts
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @postcard }
@@ -35,7 +42,7 @@ class PostcardsController < ApplicationController
   def new
     @postcard = Postcard.new
     @selected_country = "Australia"
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @postcard }
@@ -94,6 +101,18 @@ class PostcardsController < ApplicationController
     end
   end
   
+  # DELETE /postcards/1
+  # DELETE /postcards/1.xml
+  def destroy
+    @postcard = Postcard.find(params[:id])
+    @postcard.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(postcards_url) }
+      format.xml  { head :ok }
+    end
+  end
+  
   def latest
     @postcards = Postcard.find :all, :order => 'id DESC', :limit => 5 
     respond_to do |format|
@@ -110,5 +129,5 @@ class PostcardsController < ApplicationController
       format.xml  { render :xml => @postcards }
     end
   end
-  
+        
 end

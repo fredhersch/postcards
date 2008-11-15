@@ -116,3 +116,11 @@ background-color: #aea;
 
 .postcard h3 { margin-bottom: 0; }
 .postcard p { color: #666; }
+
+/** For tag cloud **/
+.css1 { font-size: 1.0em; }
+.css2 { font-size: 1.2em; }
+.css3 { font-size: 1.4em; }
+.css4 { font-size: 1.6em; }
+a.css3:link { color: red; }
+/** end cloud **/

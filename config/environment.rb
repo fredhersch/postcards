@@ -83,5 +83,6 @@ Rails::Initializer.run do |config|
   YEARS_ARRAY = (2006..2010).entries
   # Year collection
   YEARS_SELECT_COLLECTION = YEARS_ARRAY.collect {|yr| LabelValue.new(yr,yr)}
-  
+  # Modify Tag delimiter
+  #TagList.delimiter = ", "  
 end
