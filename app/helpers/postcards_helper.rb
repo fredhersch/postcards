@@ -12,9 +12,17 @@ module PostcardsHelper
     end
     return country_options + options_for_select(COUNTRIES, selected)
   end
+    
+  def popular_postcards
+    return @postcards = Postcard.find(:all, :order => 'id DESC', :conditions => 'approved = 1, votes_count >= 1')
+  end
   
+  def latest_postcards
+    return @postcards = Postcard.find(:all, :order => 'id DESC', :conditions => 'approved = 1', :limit => 5, :offset => 1)
+  end
+
   def related_posts(p)
-    return Postcard.find_tagged_with(p.tag_list)
+    return Postcard.find_tagged_with(p.tag_list, :conditions => 'approved = 1')
   end
     
 end

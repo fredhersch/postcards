@@ -1,61 +1,47 @@
 <% @title = @postcard.title %>
-<%= title(@title, :h2) %>
-
-<div class="span-16">
-	<div class="postcard-meta">
-	<p>
-	  <b>Created by <%= link_to @submitted_by.login, @submitted_by.email %><br/>Created on: <%=h @postcard.created_at.strftime("%d %B %Y") %></b>
-	<br/>
-	<% unless @postcard.tag_list.empty? %>
-	<p class="tags">
-	<strong>Tags:</strong>
-	<%= render :partial => @postcard.tags %>
-	</p>
+<div id="postcard" class="span-16">
+	<%= title(@title, :h2) %>
+	<% if logged_in? && current_user.id = @postcard.id %>
+	<span class="edit"><%= link_to 'Edit', edit_postcard_path(@postcard) %></span>
 	<% end %>
-	</p>
-	<p>
-	  <b>Last Updated at:</b>
-	  <%=h @postcard.updated_at.strftime("%d %B %Y")  %>
-	</p>
-	</div>
-	<p>
-	  <b>Year:</b>
-	  <%=h @postcard.year %>
-	</p>
-	<p>
-	  <b>Description:</b>
-	<%= image_tag @postcard.photo.url %>  
-	<%= @postcard.description %>
-	</p>
-
-	<p>
-	  <b>Organisation:</b>
-	  <%=h @postcard.organisation %>
-	</p>
-
-	<p>
-	  <b>Link:</b>
-	  <%=h @postcard.link %>
-	</p>
-
-	<p>
-	  <b>Tips:</b>
-	  <%= @postcard.tips %>
-	</p>
-
-</div>
-<div id="side-bar" class="span-8 last">
 	<div class="widget_voting">
-		<h3>
-			<span id="vote_score">Score: <%= @postcard.votes.size %></span>
-		</h3>
+		<% if logged_in? %>
 		<div id="vote_form">
 			<% form_remote_tag	:url => postcard_votes_path(@postcard) do %>
-				<%= submit_tag 'shove it' %>
+				<%= submit_tag 'Stamp it' %>
 			<% end %>
 		</div>
+		<% end %>
+		<h3>
+			<span id="vote_score">Stamps: <%= @postcard.votes.size %></span>
+		</h3>
 	</div>
+	<p class="dated">Created on: <%=h @postcard.created_at.strftime("%d %B %Y") %></p>
+	<p class="sender">Sent from: 
+		<% if logged_in? %>
+			<%= mail_to @submitted_by.email, @submitted_by.login %></p>
+		<% else %>
+			<%= @submitted_by.login  %></p>
+		<% end %>
+	<% unless @postcard.tag_list.empty? %>
+	<p class="tags"><strong>TAGS:</strong>
+		<%= render :partial => @postcard.tags %>
+	</p>
+	<% end %>
+	<%= lightbox_image_tag(@postcard.photo.url(:medium), @postcard.photo.url(:medium), {:class=>"images"}, :title => @postcard.title) %>
+	
+	<%= @postcard.description %>
+	<div class="postcard-meta">
+	  <h3>About the placement</h3>
+	  <strong>Organisation:</strong><%=h @postcard.organisation %>&nbsp;(<%= link_to @postcard.url, @postcard.url %>)
+	  <strong>Related Links:</strong><%= render :partial => "links/link", :collection => @postcard.links %>
+	  <h3>Stuff I wish I'd known</h3>
+	  <p><%= @postcard.tips %></p>
+	</div>
+</div>
+<div id="side-bar" class="span-6 last">
 	<div class="related_posts">
+		<h3>Similar postcards</h3>
 		<%= render :partial => "related", :collection => Postcard.find_tagged_with(@postcard.tag_list) %>
 	</div>
 	<div class="tag_cloud">

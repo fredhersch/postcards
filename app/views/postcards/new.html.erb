@@ -3,51 +3,76 @@
 <% form_for @postcard, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
   <%= f.hidden_field :user_id, :value => current_user.id %>
-
-  <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :year %><br />
-	<%= year_select(f)  %>   
-  </p>
-  <p>Country<br/>
-	<%= country_select(:postcard, :country) %>
-	</p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description, :class => "mceEditor" %>
-
-  <p>
-    <%= f.label :organisation %><br />
-    <%= f.text_field :organisation %>
-  </p>
-  <p>
-    <%= f.label :link %><br />
-    <%= f.text_field :link %>
-  </p>
-  <p>
-    <%= f.label :tips %><br />
-    <%= f.text_area :tips %>
-  </p>
-	<!-- add tags -->
-  <!--><p>
-	<label for="link_tag_list">Tags (seperated by comma): </label><br/>
-	<%= f.text_field(:tag_list) %>
-  </p>-->
-
-  <!-- auto complete tags -->
-  <p>
-	<b>Tags</b><br/>
-		<%= text_field_with_auto_complete :postcard, :tag_list, { :size => 50 }, { :url => formatted_tags_path(:js), :method => :get, :tokens => ',' } %>  
-	</p>
-	   
-  <p>
-    <b>Upload Image</b><br />
-	<%= f.file_field :photo %>  </p>
-  <p>
-    <%= f.submit "Create" %>
-  </p>
+  <fieldset>
+		<legend>Postcard Details</legend>
+  		<ol>
+			<li>
+			    <%= f.label :title %><br />
+			    <%= f.text_field :title %>
+			</li>
+			<li>Country<br/>
+				<%= country_select(:postcard, :country) %>
+			</li>
+			<li><%= f.label	:location%><br />
+				<%= f.text_field :location %>
+			</li>
+			<li>
+			    <%= f.label :description %><br />
+			    <%= f.text_area :description, :class => "mceEditor" %>
+			</li>
+		</ol>
+		<!-- auto complete tags -->
+		<ol>
+			<li>
+				<label for="tags">Tags</label><br/>
+				<%= text_field_with_auto_complete :postcard, :tag_list, { :size => 50 }, { :url => formatted_tags_path(:js), :method => :get, :tokens => ',' } %>  
+			</li>
+		</ol>
+	</fieldset>
+	<fieldset>
+		<legend>Photo</legend>
+		<ol>
+			<li>
+				<label for="image">Upload Image</label>
+				<%= f.file_field :photo %>  
+			</li>
+    	</ol>
+	</fieldset>
+	<fieldset>
+		<legend>Placement details</legend>
+  		<ol>
+    		<li>
+				<%= f.label :organisation %><br />
+				<!--<= text_field_with_auto_complete :postcard, :organisation, :skip_style => true  >-->
+    			<%= f.text_field :organisation %>
+			</li>
+			<li>
+			    <%= f.label :url %><br />
+			    http://<%= f.text_field :url %>
+  			</li>
+		</ol>
+	</fieldset>
+	<fieldset>
+		<legend>Related information</legend>
+		<ol>
+			<li>
+			    <%= f.label :tips %><br />
+			    <%= f.text_area :tips, :class => "mceEditor" %>
+			</li>
+			<li>
+				<%= render :partial => 'links' %>
+			</li>
+		</ol>
+	</fieldset>
+	<fieldset>
+		<legend>Terms and Conditions</legend>
+		<ol>
+			<li><%= check_box (:postcard, :terms_of_service) %>								
+			  <%= label_tag(:terms, "I agree to the terms and conditions") %>
+			</li>
+		</ol>
+	</fieldset>
+	<div class="buttons">
+		<%= f.submit "Post it" %>
+	</div>
 <% end %>
-
-<%= link_to 'Back', postcards_path %>

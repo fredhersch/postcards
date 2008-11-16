@@ -9,12 +9,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081114092021) do
+ActiveRecord::Schema.define(:version => 20081116054918) do
 
-  create_table "comments", :force => true do |t|
+  create_table "links", :force => true do |t|
     t.integer  "postcard_id"
-    t.integer  "user_id"
-    t.text     "content"
+    t.string   "title"
+    t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -44,11 +44,9 @@ ActiveRecord::Schema.define(:version => 20081114092021) do
 
   create_table "postcards", :force => true do |t|
     t.string   "title"
-    t.string   "year"
-    t.text     "summary"
     t.text     "description"
     t.string   "organisation"
-    t.string   "link"
+    t.string   "url"
     t.text     "tips"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -59,6 +57,8 @@ ActiveRecord::Schema.define(:version => 20081114092021) do
     t.integer  "user_id"
     t.string   "country"
     t.integer  "votes_count",        :default => 0
+    t.boolean  "approved",           :default => false
+    t.string   "location"
   end
 
   create_table "roles", :force => true do |t|

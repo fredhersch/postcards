@@ -8,24 +8,24 @@
 		<legend>Your Details</legend>
 		<ol>
 			<li>
-				<%= f.label :login, 'Username' %>
+				<%= f.label :login, 'Username' %><br/>
 				<%= f.text_field :login %>
 			</li>
 			<li>
-				<%= f.label :email %>
+				<%= f.label :email %><br/>
 				<%= f.text_field :email %>
 			</li>
 			<li>
-				<%= f.label :password %>
+				<%= f.label :password %><br/>
 				<%= f.password_field :password %>
 			</li>
 			<li>
-				<%= f.label :password_confirmation, 'Confirm Password' %>
+				<%= f.label :password_confirmation, 'Confirm Password' %><br/>
 				<%= f.password_field :password_confirmation %>
 			</li>
 		</ol>
 	</fieldset>
-	<fieldset>
+	<!--<fieldset>
 		<legend>Signup with OpenID</legend>
 		<ol>
 			<li>
@@ -33,7 +33,7 @@
 				<%= text_field_tag :openid_url, params[:openid_url] || params['openid.identity'] %>
 			</li>
 		</ol>
-	</fieldset>
+	</fieldset>-->
 	<div class="buttons">
 		<%= submit_tag 'Sign up' %>
 	</div>

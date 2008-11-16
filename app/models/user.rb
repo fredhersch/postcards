@@ -52,6 +52,21 @@ class User < ActiveRecord::Base
     new_record? ? not_using_openid? && (crypted_password.blank? || !password.blank?) : !password.blank?
   end
 
+  def validate
+    errors.add(:email, "Your email domain name appears to be incorrect") unless validate_email_domain(email)
+  end
+    
+  def validate_email_domain(email)
+    # strips out the domain part of the email address
+    # validate this against our list of available domains - e.g. usyd.edu.au
+    domain = email.match(/\@(.+)/)[1].to_s
+    if ALLOWABLE_DOMAINS.has_value?(domain) 
+      return true
+    else
+      return false
+    end
+  end
+
   protected
     
   def make_activation_code
@@ -64,4 +79,5 @@ class User < ActiveRecord::Base
   rescue URI::InvalidURIError
     errors.add_to_base("Invalid OpenID URL")
   end
+      
 end

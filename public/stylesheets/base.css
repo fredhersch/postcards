@@ -1,18 +1,58 @@
-/* */
+/* 
+Colour scheme
+Dark blue: #194E84
+Lighter blue: #3B6B9C
+Dark Gray: #1F242A
+Light Gray: #37414A
+Green: #60BB22
+Pink: #F2BABB
+*/
 html body {
+	min-width: 900px;
+}
+
+#header {
+	height: 110px;
+	background: #F2BABB;
+	background: #B0AFFF;
+	padding: 0 0 0 20px;	
+}
+
+#signup {
+	float: right;
+	padding: 10px;
+	margin-right: 1px;
+	margin-top: 1px;
 	background: #eee;
 }
 
+#signup ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#signup ul li { display: inline; }
+
 #wrapper {
-	width: 950px;
-	margin: 40px auto;
-	border: 2px dashed #333;
-	padding: 10px;
+	width: 930px;
+	margin: 0px auto;
+	padding: 20px;
 	background: #fff;
 }
 
+h1 {
+	font-family: Georgia;
+	color: #1F242A;
+	width: 600px;
+	float: left;
+	padding: 20px 0 0 10px;
+}
+
+
 ul#nav {
-	margin: 0 0 20px 0;
+	clear: both;
+	margin: 0;
 	padding: 0;
 }
 
@@ -21,12 +61,151 @@ ul#nav li {
 	display: inline;
 }
 
-#content, #side-bar { 
-	background: #eee;
+ul#nav li a {
+	display: block;
+	padding: 10px;
+	color: #1F242A;
+	background: #fff;
+	float: left;
+	margin-right: 5px;
+	text-transform: uppercase;
+	text-decoration: none;
 }
 
-.tags a { padding: 0 3px; }
+ul#nav li a:hover {
+	background: #1F242A;
+	color: #fff;
+}
 
+#content { 
+	margin-top: 0;
+	border-left: 2px solid #666;
+	border-right: 2px solid #666;
+}
+
+#content {
+	width: 910px;
+	background: #fff;
+	color: #666;
+	padding: 18px;
+}
+
+#home_feature {
+	padding: 0;
+	margin:  0 -10px 0 -18px;
+	width: 940px;
+	background: #eee;
+	height: 280px;
+}
+
+#home_body { 
+	margin: 10px -20px;
+	padding: 0 20px;
+}
+
+#home_body div.postcard {
+	display: block;
+}
+
+div.postcard {
+        margin-bottom: 10px;
+}
+
+div.postcard h3 {
+	font-family: Georgia;
+	font-size: 1.6em;
+    margin-bottom: 5px;
+    padding: 0;
+}
+
+div.postcard p { 
+    margin: 0; 
+}
+
+div.logos img {
+	text-align: center;
+	border: 1px solid #ccc;
+	padding: 2px;
+	
+}
+
+#postcard h2 {
+	font-size: 1.5em;
+	text-transform: uppercase;
+	margin-bottom: 5px;
+	padding: 0;
+}
+
+#postcard {
+	font-size: 1.3em;
+}
+
+p.sender, p.dated {
+	margin: 0 0 5px 0;
+	padding: 0;
+	text-transform: uppercase;
+}
+
+#postcard img {
+	float: left;
+	margin: 0 10px 10px 0;
+	border: 1px solid #666;
+	padding: 2px;
+}
+
+p.meta {
+   font-size: 0.9em;
+   padding: 2px;
+}
+
+div.slider {
+	background: #eee;
+	padding: 20px;
+}
+
+div.slider h3 {
+    font-size: 2.2em;
+}
+
+div.slider p.desc {
+	font-size: 1.7em;
+	margin-bottom: 5px;
+}
+
+div.slider p {
+    font-size: 1.2em;
+	padding-bottom: 3px;
+}
+
+div.about {
+	padding: 20px 10px 20px 20px;
+	background: #F2BABB;
+	background: #B0AFFF;
+	color: #666;
+	height: 240px;
+}
+
+div.postcard-meta {
+	clear: both;
+}
+
+div.tag_cloud {
+	padding: 0;
+}
+
+.spacer { clear: both; }
+
+a.tag { padding: 0 3px; }
+
+#footer {
+	background: #333;
+	height: 100px;
+	color: #eee;
+}
+
+#footer p {
+	padding: 20px;
+}
 /* === FLASH MESSAGES === */
 div#flash-notice {
   background: aqua;
@@ -78,44 +257,68 @@ div#errorExplanation ul li {
 
 /* === FORMS === */
 div.fieldWithErrors {
-	border: 5px solid #f66;	
+
 }
 
-div.fieldWithErrors label {
-	
+.fieldWithErrors label {
+	font-size: 1.2em;
+	font-weight: bold;
+	color: #f66;
 }
 
 div.fieldWithErrors input, div.fieldWithErrors select, 
 div.fieldWithErrors textarea
 {
-	
+	/*border: 2px solid #f66;*/
+}
+
+div.widget_voting {
+	float: right;
+	margin-right: 10px;
 }
 
 #vote_score {
-float: right;
-color: #9c9;
+	float: right;
+	color: #9c9;
+	font-size: 0.9em;
 }
+
 #vote_form {
-margin: 10px 0;
+	margin: 10px 0;
 }
+
 #vote_form input {
-padding: 3px 5px;
-border: 3px solid #393;
-background-color: #cfc;
-text-decoration: none;
-color: #393;
+	padding: 3px 5px;
+	border: 3px solid #393;
+	background-color: #cfc;
+	text-decoration: none;
+	color: #393;
+	font-size: 1.3em;
 }
+
 #vote_form input:hover {
-background-color: #aea;
+	background-color: #aea;
 }
 
-.postcard {
-	float: left;
-	width: 50%;
+fieldset ol {
+	list-style-type: none;
 }
 
-.postcard h3 { margin-bottom: 0; }
-.postcard p { color: #666; }
+fieldset ol li {
+	font-size: 1.3em;
+	margin: 5px;
+	padding: 0;
+}
+
+form label {
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+
+form select {
+	font-size: 1.3em;
+	padding: 1px;
+}
 
 /** For tag cloud **/
 .css1 { font-size: 1.0em; }
@@ -124,3 +327,32 @@ background-color: #aea;
 .css4 { font-size: 1.6em; }
 a.css3:link { color: red; }
 /** end cloud **/
+
+form.edit_postcard input {
+	padding: 3px 5px;
+	border: 3px solid #393;
+	background-color: #cfc;
+	text-decoration: none;
+	color: #393;
+	font-size: 1.2em;
+	width: 100px;
+}
+
+p.delete {
+	padding: 3px 5px;
+	border: 3px solid #666;
+	background-color: #eee;
+	text-decoration: none;
+	font-size: 1.2em;
+	width: 84px;
+	text-align: center;
+}
+
+p.delete a {
+	text-decoration: none;
+	color: #666;
+}
+
+p.delete:hover {
+	color: #eee;
+}

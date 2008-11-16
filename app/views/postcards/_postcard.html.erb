@@ -1,14 +1,18 @@
-<% div_for(postcard) do %>
-	<h3><%= link_to postcard.title, postcard %></h3>
-	<p><%= image_tag postcard.photo.url(:thumb) %><%= postcard.description %>
-	<p>Submitted by: <%= postcard.user.login %></p>
-	<p><% unless postcard.tag_list.empty? %>
-		Tags: <%= render :partial => postcard.tags %>&nbsp;|&nbsp;
-		<% end %>Votes <%= postcard.votes_count %></p>
-	<% if logged_in? && current_user.has_role?("admin") %>
-	<ul>
-	    <li><%= link_to 'Edit', edit_postcard_path(postcard) %></li>
-	  	<li><%= link_to 'Destroy', postcard, :confirm => 'Are you sure?', :method => :delete %></li>
-	</ul>
+<% div_for(postcard, :class => "span-12") do %>
+	<% if postcard.approved? %>
+	<div class="image span-3"><%= image_tag postcard.photo.url(:thumb) %></div>
+	<div class="post-data span-9 last">
+		<h3><%= link_to postcard.title, postcard %></h3>
+		<p class="desc"><%= postcard.description %></p>
+		<p class="meta">Submitted by: <%= postcard.user.login %>
+		<% unless postcard.tag_list.empty? %>
+			&nbsp;|&nbsp;Tags: <%= render :partial => postcard.tags %>&nbsp;|&nbsp;
+			<% end %>Votes <%= postcard.votes_count %>
+			<% if logged_in? && current_user.id = postcard.user_id %>
+				<%= link_to 'Edit', edit_postcard_path(postcard) %>
+			<% end %>
+		</p>
+	</div>
+	<div class="spacer"></div>
 	<% end %>
 <% end %>

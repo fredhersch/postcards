@@ -6,15 +6,27 @@ class PostcardsController < ApplicationController
   
   # uses_tiny_mce
   before_filter :login_required, :only => [:new, :update]
-  require_role :admin, :only => :delete
+  require_role :admin, :only => [:delete]
   uses_tiny_mce :only => [:new, :create, :edit, :update]
+  uses_tiny_mce :options => {
+    :theme => "advanced",
+    :theme_advanced_buttons1 => "formatselect, bold,italic,underline, strikethrough, separator, bullist, numlist, separator,justifyleft, justifycenter,justifyright,justifyfull,separator,cut, copy, paste, undo, redo, cleanup, removeformat, separator, help",
+    :theme_advanced_buttons2 => "",
+    :theme_advanced_buttons3 => "",
+    :theme_advanced_blockformats => "p,h1,h2,h3,blockquote",
+    :theme_advanced_toolbar_location => "top",
+    :theme_advanced_toolbar_align => "left",
+    :width => "600",
+    :height => "200"                            
+  }
+  #auto_complete_for :postcard, :organisation
    
   def tag_cloud
     @tags = Postcard.tag_counts
   end
       
   def index
-    #@postcards = Postcard.find(:all)
+    @count = Postcard.find(:all, :conditions => 'approved = 1').size
     @postcards = Postcard.search(params[:search], params[:page])
     #@postcards = Postcard.paginate :all, :page => params[:page], :order => 'updated_at DESC'
 
@@ -41,6 +53,7 @@ class PostcardsController < ApplicationController
   # GET /postcards/new.xml
   def new
     @postcard = Postcard.new
+    1.times { @postcard.links.build }
     @selected_country = "Australia"
     
     respond_to do |format|
@@ -62,7 +75,7 @@ class PostcardsController < ApplicationController
 
     respond_to do |format|
       if @postcard.save
-        flash[:notice] = 'Postcard was successfully created.'
+        flash[:notice] = 'Postcard was successfully created. The administrator will review your submission and it will be available once it is approved'
         format.html { redirect_to(postcards_path) }
         format.xml  { render :xml => @postcard, :status => :created, :location => @postcard }
       else
@@ -76,7 +89,9 @@ class PostcardsController < ApplicationController
   # PUT /postcards/1.xml
   def update
     @postcard = Postcard.find(params[:id])
-
+    @postcard_delete_photo = !params[:postcard].delete(:delete_photo).to_i.zero?
+    params[:postcard][:photo] = nil if params[:postcard][:photo].blank? && @postcard_delete_photo
+    
     respond_to do |format|
       if @postcard.update_attributes(params[:postcard])
         flash[:notice] = 'Postcard was successfully updated.'
@@ -100,34 +115,19 @@ class PostcardsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
-  # DELETE /postcards/1
-  # DELETE /postcards/1.xml
-  def destroy
-    @postcard = Postcard.find(params[:id])
-    @postcard.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(postcards_url) }
-      format.xml  { head :ok }
-    end
-  end
-  
+    
   def latest
-    @postcards = Postcard.find :all, :order => 'id DESC', :limit => 5 
+    @postcards = Postcard.find(:all, :order => 'id DESC', :conditions => 'approved = 1', :limit => 1)
+    @tags = Postcard.tag_counts
+    
     respond_to do |format|
       format.html
       format.xml  { render :xml => @postcards }
     end
+  end
+  
+  def about
 
   end
-
-  def popular
-    @postcards = Postcard.find(:all, :order => 'id DESC', :conditions => 'votes_count' >= 5)
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @postcards }
-    end
-  end
-        
+          
 end

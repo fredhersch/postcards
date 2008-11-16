@@ -1,12 +1,17 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :links
+
   # change to route to make comments under postcards
   # http://url/postcards/postcard-id/comments/ 
-
   map.resources :tags
-
   map.resources :postcards, :has_many => :votes
   map.resources :postcards, :has_many => :comments
- 
+  
+  map.namespace :admin do |admin|
+    admin.resources :postcards
+  end
+  
+  map.about '/about', :controller => "postcards", :action => 'about'
   # Restful Authentication Rewrites
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'

@@ -85,4 +85,7 @@ Rails::Initializer.run do |config|
   YEARS_SELECT_COLLECTION = YEARS_ARRAY.collect {|yr| LabelValue.new(yr,yr)}
   # Modify Tag delimiter
   #TagList.delimiter = ", "  
+  # Registerable domains - for locking down access to only certain domains
+  ALLOWABLE_DOMAINS = {"usyd" => "usyd.edu.au", "usyd-gmp" => "gmp.usyd.edu.au", "usyd-med" => "med.usyd.edu.au" }
+  
 end

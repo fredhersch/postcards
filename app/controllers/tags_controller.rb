@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
   def show
-    @postcards = Postcard.find_tagged_with(params[:id])
+    @postcards = Postcard.find_tagged_with(params[:id], :conditions => 'approved = 1')
   end
   
   def index
