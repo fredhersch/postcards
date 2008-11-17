@@ -1,39 +1,11 @@
 #############################################################
-#	Application
-#############################################################
-
-set :application, "bort"
-set :deploy_to, "/path/to/deploy"
-
-#############################################################
-#	Settings
-#############################################################
-
-default_run_options[:pty] = true
-ssh_options[:forward_agent] = true
-set :use_sudo, true
-set :scm_verbose, true
-set :rails_env, "staging" 
-
-#############################################################
 #	Servers
 #############################################################
 
-set :user, "bort"
-set :domain, "www.example.com"
+set :user, "deploy"
+set :domain, "173.45.229.127"
 server domain, :app, :web
 role :db, domain, :primary => true
-
-#############################################################
-#	Git
-#############################################################
-
-set :scm, :git
-set :branch, "master"
-set :scm_user, 'bort'
-set :scm_passphrase, "PASSWORD"
-set :repository, "git@github.com:FudgeStudios/bort.git"
-set :deploy_via, :remote_cache
 
 #############################################################
 #	Passenger

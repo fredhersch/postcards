@@ -1,0 +1,4 @@
+<label for="links">Related links</label> <%= add_link "Add a link" %> <br/>
+<div id="links">
+<%= render :partial => 'link', :collection => @postcard.links %>
+</div>

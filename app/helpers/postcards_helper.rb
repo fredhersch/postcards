@@ -1,5 +1,7 @@
 module PostcardsHelper
   
+  @approved = '1'
+  
   def year_select(f)
     f.collection_select(:year, YEARS_SELECT_COLLECTION, :label, :value )
   end
@@ -13,12 +15,15 @@ module PostcardsHelper
     return country_options + options_for_select(COUNTRIES, selected)
   end
     
-  def popular_postcards
-    return @postcards = Postcard.find(:all, :order => 'id DESC', :conditions => 'approved = 1, votes_count >= 1')
-  end
+  #def popular_postcards
+  #  return @postcards = Postcard.find(:all, :order => 'id DESC', :conditions => 'approved = 1, votes_count >= 1')
+  #  return @postcards = Postcard.find(:all, :order => 'id DESC', :conditions => ['approved = ?', @approved], :limit => 1)
+  #end
   
   def latest_postcards
-    return @postcards = Postcard.find(:all, :order => 'id DESC', :conditions => 'approved = 1', :limit => 5, :offset => 1)
+    #return @postcards = Postcard.find(:all, :order => 'id DESC', :conditions => 'approved = 1', :limit => 5, :offset => 1)
+    return @postcards = Postcard.find(:all, :order => 'id DESC', :conditions => ['approved = ?', @approved], :limit => 5, :offset => 1)
+    
   end
 
   def related_posts(p)

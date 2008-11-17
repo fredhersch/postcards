@@ -1,0 +1,18 @@
+<p>
+  <b>Postcard:</b>
+  <%=h @links.postcard %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%=h @links.title %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%=h @links.url %>
+</p>
+
+
+<%= link_to 'Edit', edit_links_path(@links) %> |
+<%= link_to 'Back', links_path %>

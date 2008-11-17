@@ -2,8 +2,8 @@
 #	Application
 #############################################################
 
-set :application, "bort"
-set :deploy_to, "/path/to/deploy"
+set :application, "postcards"
+set :deploy_to, "/home/deploy/#{application}"
 
 #############################################################
 #	Settings
@@ -19,8 +19,8 @@ set :rails_env, "production"
 #	Servers
 #############################################################
 
-set :user, "bort"
-set :domain, "www.example.com"
+set :user, "deploy"
+set :domain, "173.45.229.127"
 server domain, :app, :web
 role :db, domain, :primary => true
 
@@ -30,9 +30,9 @@ role :db, domain, :primary => true
 
 set :scm, :git
 set :branch, "master"
-set :scm_user, 'bort'
-set :scm_passphrase, "PASSWORD"
-set :repository, "git@github.com:FudgeStudios/bort.git"
+set :scm_user, 'fredhersch'
+set :scm_passphrase, "herschy"
+set :repository, "git@github.com:fredhersch/postcards.git"
 set :deploy_via, :remote_cache
 
 #############################################################
@@ -47,8 +47,8 @@ namespace :deploy do
       adapter: mysql
       encoding: utf8
       username: root
-      password: 
-      database: bort_production
+      password: postcard
+      database: postcard_production
       host: localhost
     EOF
     
@@ -59,11 +59,11 @@ namespace :deploy do
     # Just change the paths to whatever you need.
     #########################################################
     
-    # desc "Symlink the upload directories"
-    # task :before_symlink do
-    #   run "mkdir -p #{shared_path}/uploads"
-    #   run "ln -s #{shared_path}/uploads #{release_path}/public/uploads"
-    # end
+  desc "Symlink the upload directories"
+   task :before_symlink do
+     run "mkdir -p #{shared_path}/uploads"
+     run "ln -s #{shared_path}/uploads #{release_path}/public/uploads"
+  end
   
   end
     

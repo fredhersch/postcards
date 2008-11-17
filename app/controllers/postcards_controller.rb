@@ -117,7 +117,8 @@ class PostcardsController < ApplicationController
   end
     
   def latest
-    @postcards = Postcard.find(:all, :order => 'id DESC', :conditions => 'approved = 1', :limit => 1)
+    @approved = '1'
+    @postcards = Postcard.find(:all, :order => 'id DESC', :conditions => ['approved = ?', @approved], :limit => 1)
     @tags = Postcard.tag_counts
     
     respond_to do |format|

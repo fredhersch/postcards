@@ -4,14 +4,16 @@ development: &non_production_settings
   admin_email: fredhersch@gmail.com
   
 test:
-  <<: *non_production_settings
+    site_url: http://173.45.229.127
+    site_name: Postcards from Wherever
+    admin_email: fredhersch@gmail.com
 
 staging:
-  site_url: http://staging.example.com
-  site_name: Bort
-  admin_email: bort@bort.com  
+  site_url: http://173.45.229.127
+  site_name: Postcards from Wherever
+  admin_email: fredhersch@gmail.com 
   
 production:
-  site_url: http://www.example.com
-  site_name: Bort
-  admin_email: bort@bort.com
+  site_url: http://173.45.229.127
+  site_name: Postcards from Wherever
+  admin_email: fredhersch@gmail.com

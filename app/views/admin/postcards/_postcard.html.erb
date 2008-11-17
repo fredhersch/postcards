@@ -1,0 +1,30 @@
+<% div_for(postcard, :class => "span-24") do %>
+	<div class="options span-3">
+			<div class="approve span-3">
+			<% if postcard.approved? %>
+			<% form_for([:admin, postcard]) do |f| %>
+				<%= f.hidden_field :approved, :value => '0' %>
+				<%= f.submit "Un-approve" %>
+				<% end %>
+			<% else %>
+			<% form_for([:admin, postcard]) do |f| %>
+				<%= f.hidden_field :approved, :value => '1' %>
+				<%= f.submit "Approve" %>
+				<% end %>
+			<% end %>
+			</div>
+	</div>
+	<div class="image span-4"><%= image_tag postcard.photo.url(:thumb) %></div>
+	<div class="post-data span-10">
+		<h3><%= link_to postcard.title, [:admin, postcard] %></h3>
+		<p class="desc"><%= postcard.description %></p>
+		<p class="meta">Submitted by: <%= postcard.user.login %>
+		<% unless postcard.tag_list.empty? %>
+			&nbsp;|&nbsp;Tags: <%= render :partial => "/tags/tag", :collection => postcard.tags %>&nbsp;|&nbsp;
+			<% end %>Votes <%= postcard.votes_count %>
+	</div>
+	<div class="approve span-2 last">
+		<p class="delete"><%= link_to 'Delete', [:admin, postcard], :confirm => 'Are you sure?', :method => :delete %></p>		
+	</div>
+	<div class="spacer"></div>
+<% end %>

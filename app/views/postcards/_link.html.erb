@@ -1,0 +1,15 @@
+<div class="link">
+<% fields_for "postcard[link_attribute][]", link do |link_form| %>
+	<p>
+		Title: <%= link_form.text_field :title, :index => nil %>&nbsp;
+		url: http://<%= link_form.text_field :url, :index => nil %>
+		<% if link.new_record? %>
+			<%= link_to_function "remove", "this.up('.link').remove()" %>
+		<% else %>
+			<%= link_to_function "remove", "mark_for_destroy(this)" %>
+			<%= link_form.hidden_field :id, :index => nil %>
+			<%= link_form.hidden_field :should_destroy, :index => nil, :class => 'should_destroy' %>
+		<% end %>
+	</p>
+<% end %>
+</div>

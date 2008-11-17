@@ -1,0 +1,509 @@
+
+--- 
+links: 
+  columns: 
+  - id
+  - postcard_id
+  - title
+  - url
+  - created_at
+  - updated_at
+  records: 
+  - - "1"
+    - "2"
+    - Hoc Mai Foundation
+    - http://www.hocmai.org
+    - 
+    - 
+  - - "2"
+    - "10"
+    - Uganda gorillas
+    - www.uganda.org
+    - 
+    - 2008-11-16 03:44:28
+  - - "3"
+    - "14"
+    - 
+    - www.one.com
+    - 2008-11-15 07:57:30
+    - 2008-11-15 07:57:30
+  - - "4"
+    - "14"
+    - 
+    - www.two.com
+    - 2008-11-15 07:57:30
+    - 2008-11-15 07:57:30
+  - - "5"
+    - "14"
+    - 
+    - ""
+    - 2008-11-15 07:57:30
+    - 2008-11-15 07:57:30
+  - - "6"
+    - "15"
+    - One link
+    - www.1.com
+    - 2008-11-15 08:14:30
+    - 2008-11-15 08:14:30
+  - - "7"
+    - "15"
+    - Two link
+    - www.2.com
+    - 2008-11-15 08:14:30
+    - 2008-11-15 08:14:30
+  - - "9"
+    - "10"
+    - A new link
+    - www.newlink.com.au
+    - 2008-11-16 02:41:24
+    - 2008-11-16 03:44:28
+  - - "11"
+    - "10"
+    - Third link
+    - www.3rdlink.com
+    - 2008-11-16 03:44:28
+    - 2008-11-16 03:44:28
+  - - "12"
+    - "11"
+    - ""
+    - ""
+    - 2008-11-16 04:45:12
+    - 2008-11-16 04:45:12
+
+--- 
+passwords: 
+  columns: 
+  - id
+  - user_id
+  - reset_code
+  - expiration_date
+  - created_at
+  - updated_at
+  records: 
+  - - "1"
+    - "1"
+    - 527b56ce4ba1b5f3ae1eb640b7e5b7e2ca52e597
+    - 2008-11-26 04:19:37
+    - 2008-11-12 04:19:37
+    - 2008-11-12 04:19:37
+
+--- 
+postcards: 
+  columns: 
+  - id
+  - title
+  - description
+  - organisation
+  - url
+  - tips
+  - created_at
+  - updated_at
+  - photo_file_name
+  - photo_content_type
+  - photo_file_size
+  - photo_updated_at
+  - user_id
+  - country
+  - votes_count
+  - approved
+  - location
+  records: 
+  - - "2"
+    - Vietnam
+    - <p>This is the<strong> description</strong></p>
+    - Hoc Main
+    - http://www.hocmai.org
+    - |-
+      <p>These are some tips</p>
+      <ul>
+      <li>This</li>
+      <li>That</li>
+      <li>The other</li>
+      </ul>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+    - 2008-11-12 11:25:00
+    - 2008-11-16 02:09:20
+    - 
+    - 
+    - 
+    - 
+    - "1"
+    - 
+    - "0"
+    - false
+    - 
+  - - "4"
+    - test
+    - <p>test</p>
+    - test
+    - test
+    - <p>test</p>
+    - 2008-11-13 08:09:52
+    - 2008-11-16 04:58:27
+    - n841390532_443283_5632.jpg
+    - image/jpeg
+    - "57804"
+    - 2008-11-13 08:09:52
+    - "1"
+    - 
+    - "0"
+    - true
+    - 
+  - - "6"
+    - A test card 2
+    - <p>This is the description</p>
+    - hoc mau
+    - ldkhfgq
+    - <p>kfjghdf;gh;</p>
+    - 2008-11-13 08:55:47
+    - 2008-11-16 02:10:39
+    - n841390532_443283_5632.jpg
+    - image/jpeg
+    - "57804"
+    - 2008-11-13 08:55:46
+    - "1"
+    - 
+    - "0"
+    - true
+    - 
+  - - "8"
+    - A nother postcard
+    - ""
+    - ""
+    - ""
+    - ""
+    - 2008-11-13 09:07:31
+    - 2008-11-16 00:55:24
+    - n841390532_443283_5632.jpg
+    - image/jpeg
+    - "57804"
+    - 2008-11-13 09:07:31
+    - "1"
+    - 
+    - "0"
+    - false
+    - 
+  - - "9"
+    - My postcard
+    - <p>This is the description of the amazing trip I took</p>
+    - My trip.org
+    - ""
+    - <p>These are some things I wished I'd known!</p>
+    - 2008-11-13 09:43:26
+    - 2008-11-16 00:55:24
+    - Photo_2.jpg
+    - image/jpeg
+    - "57625"
+    - 2008-11-13 09:43:26
+    - "2"
+    - 
+    - "0"
+    - false
+    - 
+  - - "10"
+    - No country for old men
+    - <p>This was a trip I made as part of my ICA.</p>
+    - NTGPE
+    - ""
+    - |-
+      <p>Somethings I wished I'd known would include:</p>
+      <ul>
+      <li>Do this</li>
+      <li>Do that</li>
+      </ul>
+    - 2008-11-16 02:41:24
+    - 2008-11-16 04:05:06
+    - Photo_7.jpg
+    - image/jpeg
+    - "63133"
+    - 2008-11-16 04:05:06
+    - "2"
+    - Australia
+    - "0"
+    - true
+    - Oenpelli
+
+--- 
+roles: 
+  columns: 
+  - id
+  - name
+  records: 
+  - - "1"
+    - admin
+
+--- 
+roles_users: 
+  columns: 
+  - role_id
+  - user_id
+  records: 
+  - - "1"
+    - "1"
+
+--- 
+sessions: 
+  columns: 
+  - id
+  - session_id
+  - data
+  - created_at
+  - updated_at
+  records: 
+  - - "7"
+    - 04b2a685936b5610b98f90f45d849015
+    - |
+      BAh7CDoOcmV0dXJuX3RvMCIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6
+      Rmxhc2g6OkZsYXNoSGFzaHsABjoKQHVzZWR7ADoMdXNlcl9pZGkG
+
+    - 2008-11-13 09:36:26
+    - 2008-11-13 09:38:07
+  - - "9"
+    - 6702e464b5110b94c520e99aed1826bf
+    - |
+      BAh7CDoOcmV0dXJuX3RvMDoMdXNlcl9pZGkHIgpmbGFzaElDOidBY3Rpb25D
+      b250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA
+
+    - 2008-11-13 11:12:26
+    - 2008-11-14 07:07:40
+  - - "26"
+    - b83980bab722c1f487d29af4cd646045
+    - |
+      BAh7BzoOcmV0dXJuX3RvMCIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6
+      Rmxhc2g6OkZsYXNoSGFzaHsABjoKQHVzZWR7AA==
+
+    - 2008-11-16 05:55:10
+    - 2008-11-16 05:55:10
+
+--- 
+taggings: 
+  columns: 
+  - id
+  - tag_id
+  - taggable_id
+  - taggable_type
+  - created_at
+  records: 
+  - - "1"
+    - "1"
+    - "2"
+    - Postcard
+    - 2008-11-12 11:27:28
+  - - "2"
+    - "2"
+    - "2"
+    - Postcard
+    - 2008-11-12 11:27:28
+  - - "3"
+    - "3"
+    - "4"
+    - Postcard
+    - 2008-11-13 08:09:53
+  - - "4"
+    - "2"
+    - "6"
+    - Postcard
+    - 2008-11-13 08:55:47
+  - - "5"
+    - "4"
+    - "6"
+    - Postcard
+    - 2008-11-13 08:55:47
+  - - "6"
+    - "5"
+    - "6"
+    - Postcard
+    - 2008-11-13 08:55:47
+  - - "7"
+    - "6"
+    - "9"
+    - Postcard
+    - 2008-11-13 09:43:26
+  - - "8"
+    - "5"
+    - "9"
+    - Postcard
+    - 2008-11-13 09:43:26
+  - - "13"
+    - "2"
+    - "12"
+    - Postcard
+    - 2008-11-15 07:18:37
+  - - "14"
+    - "5"
+    - "12"
+    - Postcard
+    - 2008-11-15 07:18:37
+  - - "15"
+    - "2"
+    - "13"
+    - Postcard
+    - 2008-11-15 07:20:44
+  - - "16"
+    - "5"
+    - "13"
+    - Postcard
+    - 2008-11-15 07:20:44
+  - - "17"
+    - "9"
+    - "10"
+    - Postcard
+    - 2008-11-16 02:41:24
+  - - "18"
+    - "10"
+    - "10"
+    - Postcard
+    - 2008-11-16 02:41:24
+
+--- 
+tags: 
+  columns: 
+  - id
+  - name
+  records: 
+  - - "1"
+    - vietnam
+  - - "2"
+    - hanoi
+  - - "3"
+    - test
+  - - "4"
+    - uganda
+  - - "5"
+    - elective
+  - - "6"
+    - africa
+  - - "7"
+    - fred
+  - - "8"
+    - other
+  - - "9"
+    - outback
+  - - "10"
+    - indigenous
+
+--- 
+users: 
+  columns: 
+  - id
+  - login
+  - identity_url
+  - name
+  - email
+  - crypted_password
+  - salt
+  - remember_token
+  - activation_code
+  - state
+  - remember_token_expires_at
+  - activated_at
+  - deleted_at
+  - created_at
+  - updated_at
+  records: 
+  - - "1"
+    - admin
+    - 
+    - Fred Hersch
+    - fredhersch@gmail.com
+    - 3670b63e1d7b3714c15c5540dace0e3158041ea9
+    - e9eaed0afb57810262a48ca327d6d2f2e1356cb4
+    - 
+    - 
+    - active
+    - 
+    - 2008-11-12 04:18:39
+    - 
+    - 2008-11-12 04:18:39
+    - 2008-11-12 04:18:39
+  - - "2"
+    - fredhersch
+    - 
+    - ""
+    - fredhersch@med.usyd.edu.au
+    - e1299eaf6df22d3cce37ab183cd9c19de42ffff5
+    - ef4e461d8b1ef163c8596fd14e0e5b7c3b2a70eb
+    - 
+    - 
+    - active
+    - 
+    - 2008-11-13 09:33:48
+    - 
+    - 2008-11-13 09:33:20
+    - 2008-11-15 12:30:43
+  - - "3"
+    - joebloggs
+    - 
+    - ""
+    - joe@usyd.edu.au
+    - 5425246f84bae3a7feb23021302376585b7c38fc
+    - 9cf15845c3d57694f3eae2f1b434533d29b238bf
+    - 
+    - e02c7d6c873f32a93c0d60f1e77b2001710553ef
+    - pending
+    - 
+    - 
+    - 
+    - 2008-11-16 04:22:19
+    - 2008-11-16 04:22:19
+  - - "4"
+    - fhersch
+    - 
+    - ""
+    - fher6965@med.usyd.edu.au
+    - a2b5de53e07c98ce03e74b1b6d5db173102a9f63
+    - dc82f1483ea2435505c0519111b453663f1bc913
+    - 
+    - 1f5d1807307e4ff97e66a20336c1c5a6826cc13f
+    - pending
+    - 
+    - 
+    - 
+    - 2008-11-16 04:24:04
+    - 2008-11-16 04:24:04
+
+--- 
+votes: 
+  columns: 
+  - id
+  - postcard_id
+  - user_id
+  - created_at
+  - updated_at
+  records: 
+  - - "1"
+    - "1"
+    - 
+    - 2008-11-14 04:56:11
+    - 2008-11-14 04:56:11
+  - - "2"
+    - "10"
+    - 
+    - 2008-11-14 05:15:36
+    - 2008-11-14 05:15:36
+  - - "3"
+    - "10"
+    - 
+    - 2008-11-14 05:22:31
+    - 2008-11-14 05:22:31
+  - - "4"
+    - "10"
+    - 
+    - 2008-11-14 05:40:56
+    - 2008-11-14 05:40:56
+  - - "5"
+    - "10"
+    - 
+    - 2008-11-14 05:52:24
+    - 2008-11-14 05:52:24
+  - - "6"
+    - "10"
+    - 
+    - 2008-11-14 06:06:33
+    - 2008-11-14 06:06:33
+  - - "7"
+    - "3"
+    - 
+    - 2008-11-14 07:07:27
+    - 2008-11-14 07:07:27
