@@ -11,9 +11,12 @@ set :deploy_to, "/home/fred/public_html/#{application}"
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
+ssh_options[:paranoid] = false
 set :use_sudo, true
 set :scm_verbose, true
 set :rails_env, "production" 
+#set :mongrel_conf = "#{current_path}/config/mongrel_conf.yml"
+
 
 #############################################################
 #	Servers

@@ -2,7 +2,7 @@
 #	Servers
 #############################################################
 
-set :user, "deploy"
+set :user, "fred"
 set :domain, "173.45.229.127"
 server domain, :app, :web
 role :db, domain, :primary => true
@@ -18,9 +18,9 @@ namespace :deploy do
     staging:    
       adapter: mysql
       encoding: utf8
-      username: root
-      password: 
-      database: bort_staging
+      username: fred
+      password: dbAdm1n
+      database: postcards_staging
       host: localhost
     EOF
     
