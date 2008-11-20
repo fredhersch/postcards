@@ -35,5 +35,4 @@ require File.expand_path("#{File.dirname(__FILE__)}/../vendor/gems/capistrano-ex
  #    remote_db_cleanup
  #  end
 
-
-end
+# end
