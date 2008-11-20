@@ -81,10 +81,9 @@ namespace :deploy do
   #  desc "#{t} task is a no-op with mod_rails"
   #  task t, :roles => :app do ; end
   #end
-  namespace :deploy do
-    task :restart, :roles => :app, :except => { :no_release => true } do
-      top.deprec.mongrel.restart
-  end
-  
+  # desc "restart mongrel"
+  # task :restart, :roles => :app, :except => { :no_release => true } do
+  #    top.deprec.mongrel.restart
+  #end
   
 end
