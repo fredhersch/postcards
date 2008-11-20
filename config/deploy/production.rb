@@ -36,7 +36,7 @@ set :scm, :git
 set :branch, "master"
 set :scm_user, 'fredhersch'
 set :scm_passphrase, "herschy"
-set :repository, "git clone git@github.com:fredhersch/postcards.git"
+set :repository, "git@github.com:fredhersch/postcards.git"
 set :deploy_via, :remote_cache
 
 #############################################################
