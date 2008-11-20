@@ -23,7 +23,7 @@ set :rails_env, "production"
 #############################################################
 
 set :user, "fred"
-set :runner "fred"
+set :runner, "fred"
 set :domain, "173.45.229.127"
 server domain, :app, :web
 role :db, domain, :primary => true
