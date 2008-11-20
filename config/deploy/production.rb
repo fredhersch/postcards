@@ -33,7 +33,7 @@ role :db, domain, :primary => true
 #############################################################
 
 set :scm, :git
-set :branch, "master"
+set :branch, "origin/master"
 set :scm_user, 'fredhersch'
 set :scm_passphrase, "herschy"
 set :repository, "git clone git@github.com:fredhersch/postcards.git"
