@@ -3,7 +3,7 @@
 #############################################################
 
 set :application, "postcards"
-set :deploy_to, "/home/deploy/#{application}"
+set :deploy_to, "/home/fred/public_html/#{application}"
 
 #############################################################
 #	Settings
@@ -19,8 +19,8 @@ set :rails_env, "production"
 #	Servers
 #############################################################
 
-set :user, "deploy"
-set :runner, "deploy"
+set :user, "fred"
+set :runner "fred"
 set :domain, "173.45.229.127"
 server domain, :app, :web
 role :db, domain, :primary => true
@@ -33,7 +33,7 @@ set :scm, :git
 set :branch, "master"
 set :scm_user, 'fredhersch'
 set :scm_passphrase, "herschy"
-set :repository, "git@github.com:fredhersch/postcards.git"
+set :repository, "git clone git@github.com:fredhersch/postcards.git"
 set :deploy_via, :remote_cache
 
 #############################################################
@@ -47,8 +47,8 @@ namespace :deploy do
     production:    
       adapter: mysql
       encoding: utf8
-      username: deploy
-      password: postcard
+      username: fred
+      password: dbAdm1n
       database: postcards_production
       host: localhost
     EOF
@@ -60,28 +60,28 @@ namespace :deploy do
     # Just change the paths to whatever you need.
     #########################################################
     
-  desc "Fix script permissions"
-  task :fix_script_perms do
-      run "chmod 755 #{latest_release}/script/spin"
-    end
-    
-  desc "Symlink the upload directories"
-   task :before_symlink do
-     run "mkdir -p #{shared_path}/uploads"
-     run "ln -s #{shared_path}/uploads #{release_path}/public/uploads"
-  end
-  
+    desc "Symlink the upload directories"
+     task :before_symlink do
+       run "mkdir -p #{shared_path}/uploads"
+       run "ln -s #{shared_path}/uploads #{release_path}/public/uploads"
+     end
   end
     
   # Restart passenger on deploy
-  desc "Restarting mod_rails with restart.txt"
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    run "touch #{current_path}/tmp/restart.txt"
+  # Commented out as not using passenger
+  # desc "Restarting mod_rails with restart.txt"
+  #task :restart, :roles => :app, :except => { :no_release => true } do
+  #  run "touch #{current_path}/tmp/restart.txt"
+  #end
+  
+  #[:start, :stop].each do |t|
+  #  desc "#{t} task is a no-op with mod_rails"
+  #  task t, :roles => :app do ; end
+  #end
+  namespace :deploy do
+    task :restart, :roles => :app, :except => { :no_release => true } do
+      top.deprec.mongrel.restart
   end
   
-  [:start, :stop].each do |t|
-    desc "#{t} task is a no-op with mod_rails"
-    task t, :roles => :app do ; end
-  end
   
 end
