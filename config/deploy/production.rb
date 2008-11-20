@@ -20,6 +20,7 @@ set :rails_env, "production"
 #############################################################
 
 set :user, "deploy"
+set :runner, "deploy"
 set :domain, "173.45.229.127"
 server domain, :app, :web
 role :db, domain, :primary => true
@@ -46,9 +47,9 @@ namespace :deploy do
     production:    
       adapter: mysql
       encoding: utf8
-      username: root
+      username: deploy
       password: postcard
-      database: postcard_production
+      database: postcards_production
       host: localhost
     EOF
     
@@ -58,6 +59,11 @@ namespace :deploy do
     # Uncomment the following to symlink an uploads directory.
     # Just change the paths to whatever you need.
     #########################################################
+    
+  desc "Fix script permissions"
+  task :fix_script_perms do
+      run "chmod 755 #{latest_release}/script/spin"
+    end
     
   desc "Symlink the upload directories"
    task :before_symlink do

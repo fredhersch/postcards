@@ -1,37 +1,30 @@
-set :stages, %w(staging production)
-set :default_stage, "production"
+require 'deprec'
+  
+set :database_yml_in_scm, false
 
-require File.expand_path("#{File.dirname(__FILE__)}/../vendor/gems/capistrano-ext-1.2.1/lib/capistrano/ext/multistage")
+set :user, "fred"
+set :runner, "fred"  
+set :application, "postcards"
+set :domain, "173.45.229.127"
+# set :gems_for_project, %w(dr_nic_magic_models swiftiply) # list of gems to be installed
+set :repository, "git@github.com:fredhersch/postcards.git"
+set :scm, :git
+set :deploy_via, :remote_cache
+role :app, domain
+role :web, domain
+role :db, domain, :primary => true
 
-namespace :db do
-  desc 'Dumps the production database to db/production_data.sql on the remote server'
-  task :remote_db_dump, :roles => :db, :only => { :primary => true } do
-    run "cd #{deploy_to}/#{current_dir} && " +
-      "rake RAILS_ENV=#{rails_env} db:database_dump --trace" 
-  end
+# If you aren't deploying to /var/www/apps/#{application} on the target
+# servers (which is the deprec default), you can specify the actual location
+# via the :deploy_to variable:
+# set :deploy_to, "/var/www/#{application}"
 
-  desc 'Downloads db/production_data.sql from the remote production environment to your local machine'
-  task :remote_db_download, :roles => :db, :only => { :primary => true } do  
-    execute_on_servers(options) do |servers|
-      self.sessions[servers.first].sftp.connect do |tsftp|
-        tsftp.download!("#{deploy_to}/#{current_dir}/db/production_data.sql", "db/production_data.sql")
-      end
-    end
-  end
+# If you aren't using Subversion to manage your source code, specify
+# your SCM below:
+# set :scm, :subversion
 
-  desc 'Cleans up data dump file'
-  task :remote_db_cleanup, :roles => :db, :only => { :primary => true } do
-    execute_on_servers(options) do |servers|
-      self.sessions[servers.first].sftp.connect do |tsftp|
-        tsftp.remove! "#{deploy_to}/#{current_dir}/db/production_data.sql" 
-      end
-    end
-  end 
-
-  desc 'Dumps, downloads and then cleans up the production data dump'
-  task :remote_db_runner do
-    remote_db_dump
-    remote_db_download
-    remote_db_cleanup
+namespace :deploy do
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    top.deprec.mongrel.restart
   end
 end
