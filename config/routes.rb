@@ -28,8 +28,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :passwords
   map.resource :session
   
+  #Search route
+  map.search "search", :controller => "search"
+  
   # Home Page
-  map.root :controller => 'postcards', :action => 'latest'
+  map.root :controller => 'postcards', :action => 'index'
 
   # Install the default routes as the lowest priority.
   map.connect ':controller/:action/:id'

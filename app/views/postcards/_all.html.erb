@@ -34,3 +34,10 @@
   </tr>
 <% end %>
 </table>
+
+<div class="tag_cloud span-6">
+	<h3>Tag cloud</h3>
+	 <% tag_cloud @tags, %w(css1 css2 css3 css4) do |tag, css_class| %>
+	    <%= link_to tag, tag_path(:id => tag.name), :class => css_class %>
+	  <% end %>
+</div>

@@ -1,35 +1,36 @@
-<%= title "Login", :h2 %>
-<% form_tag session_path do %>
-	<fieldset>
-		<legend>Your Details</legend>
-		<ol>
-			<li>
-				<%= label_tag 'login', 'Username' %><br/>
-				<%= text_field_tag 'login', @login %>
-			</li>
-			<li>
-				<%= label_tag 'password' %><br/>
-				<%= password_field_tag 'password', nil %>
-			</li>
-			<li>
-				<%= check_box_tag 'remember_me', '1', @remember_me %>
-				<%= label_tag 'remember_me', 'Remember me' %>
-			</li>
-		</ol>
-	</fieldset>
-	<!--<fieldset>
-		<legend>Login with OpenID</legend>
-		<ol>
-			<li>
-				<%= label_tag 'openid_url', 'OpenID URL' %>
-				<%= text_field_tag 'openid_url' %>
-			</li>
-		</ol>
-	</fieldset>-->
-	<div class="buttons">
-		<%= submit_tag 'Login' %>
-		<%= link_to 'Forgotten Password', forgot_password_path %>
-	</div>
-<% end -%>
+<div class="wrapper">
+	<%= title "Login", :h2 %>
+	<% form_tag session_path do %>
+		<fieldset>
+			<legend>Your Details</legend>
+			<ol>
+				<li>
+					<%= label_tag 'login', 'Username' %><br/>
+					<%= text_field_tag 'login', @login %>
+				</li>
+				<li>
+					<%= label_tag 'password' %><br/>
+					<%= password_field_tag 'password', nil %>
+				</li>
+				<li>
+					<%= check_box_tag 'remember_me', '1', @remember_me %>
+					<%= label_tag 'remember_me', 'Remember me' %>
+				</li>
+			</ol>
+		</fieldset>
+		<!--<fieldset>
+			<legend>Login with OpenID</legend>
+			<ol>
+				<li>
+					<%= label_tag 'openid_url', 'OpenID URL' %>
+					<%= text_field_tag 'openid_url' %>
+				</li>
+			</ol>
+		</fieldset>-->
+		<div class="buttons">
+			<%= submit_tag 'Login' %>
+			<%= link_to 'Forgotten Password', forgot_password_path %>
+		</div>
+	<% end -%>
+</div>
 <%= javascript_tag "$('login').focus()" %>
-

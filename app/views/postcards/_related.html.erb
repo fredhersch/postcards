@@ -1,5 +1,5 @@
+<% if related.approved? && related.id != @postcard.id %>
 <% div_for(related, :class => "span-6") do %>
-	<% if related.approved? && related.id != @postcard.id %>
 	<div class="image span-3"><%= image_tag related.photo.url(:thumb) %></div>
 	<div class="post-data span-3 last">
 		<h3><%= link_to related.title, related %></h3>

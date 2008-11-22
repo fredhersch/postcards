@@ -1,0 +1,10 @@
+--- 
+user: mongrel_postcards
+group: app_postcards
+cwd: /home/fred/public_html/postcards/current
+log_file: /home/fred/public_html/postcards/shared/log/mongrel.log
+port: "8000"
+environment: production
+address: 127.0.0.1
+pid_file: /home/fred/public_html/postcards/shared/pids/mongrel.pid
+servers: 2

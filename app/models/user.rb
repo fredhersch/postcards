@@ -40,6 +40,7 @@ class User < ActiveRecord::Base
   def has_role?(role)
     list ||= self.roles.map(&:name)
     list.include?(role.to_s) || list.include?('admin')
+    #list.include?(role.to_s)
   end
   
   # Not using open id

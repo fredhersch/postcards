@@ -26,9 +26,12 @@ class PostcardsController < ApplicationController
   end
       
   def index
-    @count = Postcard.find(:all, :conditions => 'approved = 1').size
-    @postcards = Postcard.search(params[:search], params[:page])
+    #@count = Postcard.find(:all, :conditions => 'approved = 1').size
+    #@postcards = Postcard.search(params[:search], params[:page])
     #@postcards = Postcard.paginate :all, :page => params[:page], :order => 'updated_at DESC'
+    @approved = '1'
+    @postcards = Postcard.find(:all, :order => 'id DESC', :conditions => ['approved = ?', @approved], :limit => 5)
+    @tags = Postcard.tag_counts
 
     respond_to do |format|
       format.html # index.html.erb
@@ -36,6 +39,16 @@ class PostcardsController < ApplicationController
     end
   end
   
+  def list
+    @count = Postcard.find(:all, :conditions => 'approved = 1').size
+    @postcards = Postcard.search(params[:search], params[:page])
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @postcards }
+    end
+  end
+    
   # GET /postcards/1
   # GET /postcards/1.xml
   def show
@@ -70,7 +83,6 @@ class PostcardsController < ApplicationController
   # POST /postcards
   # POST /postcards.xml
   def create
-    #@postcard = @current_user.postcards.build params[:postcard]   
     @postcard = Postcard.create(params[:postcard])
 
     respond_to do |format|
@@ -115,20 +127,9 @@ class PostcardsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-    
-  def latest
-    @approved = '1'
-    @postcards = Postcard.find(:all, :order => 'id DESC', :conditions => ['approved = ?', @approved], :limit => 1)
-    @tags = Postcard.tag_counts
-    
-    respond_to do |format|
-      format.html
-      format.xml  { render :xml => @postcards }
-    end
-  end
-  
+      
   def about
-
+    # placeholder for the about page
   end
           
 end

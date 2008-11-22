@@ -3,7 +3,7 @@ class <%= class_name %>Mailer < ActionMailer::Base
   def forgot_password(password)
     setup_email(password.<%= user_model_name %>)
     @subject    += 'You have requested to change your password'
-    @body[:url]  = "http://YOURSITE/change_password/#{password.reset_code}"
+    @body[:url]  = "http://173.229.45.127/change_password/#{password.reset_code}"
   end
 
   def reset_password(<%= user_model_name %>)

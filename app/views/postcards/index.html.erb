@@ -1,4 +1,42 @@
-<%= title('All Postcards', :h2) %>
-<h2><%= "Showing #{ pluralize(@postcards.size, 'postcard')}" %> of <%= @count %></h2>
-<%= render :partial => 'postcard', :collection => @postcards %>
-<%= will_paginate @postcards %>
+
+<%= title('Home') %>
+<div id="home_feature" class="span-24">
+	<div class="wrapper">
+		<div id="slider" class="span-15">
+			<ul class="navigation">
+				<%= render :partial => 'feature_nav', :collection => @postcards %>
+			</ul>
+			<%= render :partial => 'feature', :collection => @postcards %>
+		</div>
+		<div class="about span-6 last">
+			<h2>Where's your stethescope been?</h2>
+			<p>Going somewhere over the summer? Submit a postcard with a photo of where your stethescope has been and you could win!</p>
+		</div>
+		<div class="spacer"></div>
+	</div>
+</div>
+<div class="spacer"></div>
+<div id="home_body">
+	<div class="wrapper">
+		<div class="latest_postcards span-15 border-right">
+			<!--<h2>Latest from the global doctor</h2>
+			<p>Something here about something</p>-->
+			<h2 class="title">postcards from the global doctor</h2>
+			<% @postcards = latest_postcards %>
+			<%= render :partial => 'latest', :collection => @postcards %>
+		</div>
+		<div class="sidebar span-7 last">
+			<div class="box"><h4>Competition</h4><p>Where's your stethescope been?</p>
+			</div>
+			<div class="box logos">
+				<h4>Sponsors</h4>
+				<%= image_tag "logos/globalhome.jpg", :width => "150" %>
+				<%= image_tag "logos/medsoc.png", :height => "100" %>
+			</div>
+		</div>
+		<div class="spacer"></div>
+	</div>
+</div>
+<script type="text/javascript"> 
+  $("#slider ul").idTabs(); 
+</script>

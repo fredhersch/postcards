@@ -1,38 +1,40 @@
-<% @title = @postcard.title %>
-<div id="postcard" class="span-24">
-	<%= title(@title, :h2) %>
-	<div class="admin_options">
-		<ul>
-			<% if @postcard.approved? %>
-			<li><% form_for([:admin, @postcard]) do |f| %>
-				<%= f.hidden_field :approved, :value => '0' %>
-				<%= f.submit "Un-approve" %>
+<div class="wrapper">
+	<% @title = @postcard.title %>
+	<div id="postcard" class="span-24">
+		<%= title(@title, :h2) %>
+		<div class="admin_options">
+			<ul>
+				<% if @postcard.approved? %>
+				<li><% form_for([:admin, @postcard]) do |f| %>
+					<%= f.hidden_field :approved, :value => '0' %>
+					<%= f.submit "Un-approve" %>
+					<% end %>
+				</li>
+				<% else %>
+				<li><% form_for([:admin, @postcard]) do |f| %>
+					<%= f.hidden_field :approved, :value => '1' %>
+					<%= f.submit "Approve" %>
+					<% end %>
+				</li>
 				<% end %>
-			</li>
-			<% else %>
-			<li><% form_for([:admin, @postcard]) do |f| %>
-				<%= f.hidden_field :approved, :value => '1' %>
-				<%= f.submit "Approve" %>
-				<% end %>
-			</li>
-			<% end %>
-			<li><%= link_to 'Destroy', @postcard, :confirm => 'Are you sure?', :method => :delete %></li>
-		</ul>
-	</div>
-	<p class="dated">Created on: <%=h @postcard.created_at.strftime("%d %B %Y") %></p>
-	<p class="sender">Sent from: <%= @submitted_by.login  %></p>
-	<% unless @postcard.tag_list.empty? %>
-	<p class="tags"><strong>TAGS:</strong>
-		<%= render :partial => "/tags/tag", :collection => @postcard.tags %>
-	</p>
-	<% end %>
-	<%= image_tag @postcard.photo.url(:medium) %>
-	<%= @postcard.description %>
-	<div class="postcard-meta">
-	  <h3>About the placement</h3>
-	  <strong>Organisation:</strong><%=h @postcard.organisation %>&nbsp;(<%= link_to @postcard.url, @postcard.url %>)
-	  <strong>Related Links:</strong><%= render :partial => "links/link", :collection => @postcard.links %>
-	  <h3>Stuff I wish I'd known</h3>
-	  <p><%= @postcard.tips %></p>
+				<li><%= link_to 'Destroy', @postcard, :confirm => 'Are you sure?', :method => :delete %></li>
+			</ul>
+		</div>
+		<p class="dated">Created on: <%=h @postcard.created_at.strftime("%d %B %Y") %></p>
+		<p class="sender">Sent from: <%= @submitted_by.login  %></p>
+		<% unless @postcard.tag_list.empty? %>
+		<p class="tags"><strong>TAGS:</strong>
+			<%= render :partial => "/tags/tag", :collection => @postcard.tags %>
+		</p>
+		<% end %>
+		<%= image_tag @postcard.photo.url(:medium) %>
+		<%= @postcard.description %>
+		<div class="postcard-meta">
+		  <h3>About the placement</h3>
+		  <strong>Organisation:</strong><%=h @postcard.organisation %>&nbsp;(<%= link_to @postcard.url, @postcard.url %>)
+		  <strong>Related Links:</strong><%= render :partial => "links/link", :collection => @postcard.links %>
+		  <h3>Stuff I wish I'd known</h3>
+		  <p><%= @postcard.tips %></p>
+		</div>
 	</div>
 </div>

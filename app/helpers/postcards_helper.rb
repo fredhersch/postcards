@@ -22,7 +22,7 @@ module PostcardsHelper
   
   def latest_postcards
     #return @postcards = Postcard.find(:all, :order => 'id DESC', :conditions => 'approved = 1', :limit => 5, :offset => 1)
-    return @postcards = Postcard.find(:all, :order => 'id DESC', :conditions => ['approved = ?', @approved], :limit => 5, :offset => 1)
+    return @postcards = Postcard.find(:all, :order => 'id DESC', :conditions => ['approved = ?', @approved], :limit => 5, :offset => 0)
     
   end
 

@@ -1,4 +1,6 @@
-<%= title('Postcards Admin', :h2) %>
-<!--<h2><= "Showing #{ pluralize(@postcards.size, 'postcard')}" %> of <= @count %></h2>-->
-<%= render :partial => 'postcard', :collection => @postcards %>
-<%= will_paginate @postcards %>
+<div class="wrapper">
+	<%= title('Postcards Admin', :h2) %>
+	<!--<h2><= "Showing #{ pluralize(@postcards.size, 'postcard')}" %> of <= @count %></h2>-->
+	<%= render :partial => 'postcard', :collection => @postcards %>
+	<%= will_paginate @postcards %>
+</div>

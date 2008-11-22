@@ -1,53 +1,64 @@
-<% @title = @postcard.title %>
-<div id="postcard" class="span-16">
-	<%= title(@title, :h2) %>
-	<% if logged_in? && current_user.id = @postcard.id %>
-	<span class="edit"><%= link_to 'Edit', edit_postcard_path(@postcard) %></span>
-	<% end %>
-	<div class="widget_voting">
-		<% if logged_in? %>
-		<div id="vote_form">
-			<% form_remote_tag	:url => postcard_votes_path(@postcard) do %>
-				<%= submit_tag 'Stamp it' %>
+<div class="wrapper">
+	<% @title = @postcard.title %>
+	<div id="postcard" class="span-16">
+		<%= title(@title, :h2) %>
+		<% if logged_in? && current_user.id = @postcard.id %>
+		<span class="edit"><%= link_to 'Edit', edit_postcard_path(@postcard) %></span>
+		<% end %>
+		<!--<div class="widget_voting">
+			<% if logged_in? %>
+			<div id="vote_form">
+				<% form_remote_tag	:url => postcard_votes_path(@postcard) do %>
+					<%= submit_tag 'Stamp it' %>
+				<% end %>
+			</div>
 			<% end %>
-		</div>
+			<h3>
+				<span id="vote_score">Stamps: <%= @postcard.votes.size %></span>
+			</h3>
+		</div>-->
+		<p class="dated">Created on: <%=h @postcard.created_at.strftime("%d %B %Y") %></p>
+		<p class="sender">Sent from: 
+			<% if logged_in? %>
+				<%= mail_to @submitted_by.email, @submitted_by.login %></p>
+			<% else %>
+				<%= @submitted_by.login  %></p>
+			<% end %>
+		<% unless @postcard.tag_list.empty? %>
+		<p class="tags"><strong>TAGS:</strong>
+			<%= render :partial => @postcard.tags %>
+		</p>
 		<% end %>
-		<h3>
-			<span id="vote_score">Stamps: <%= @postcard.votes.size %></span>
-		</h3>
-	</div>
-	<p class="dated">Created on: <%=h @postcard.created_at.strftime("%d %B %Y") %></p>
-	<p class="sender">Sent from: 
-		<% if logged_in? %>
-			<%= mail_to @submitted_by.email, @submitted_by.login %></p>
-		<% else %>
-			<%= @submitted_by.login  %></p>
-		<% end %>
-	<% unless @postcard.tag_list.empty? %>
-	<p class="tags"><strong>TAGS:</strong>
-		<%= render :partial => @postcard.tags %>
-	</p>
-	<% end %>
-	<%= lightbox_image_tag(@postcard.photo.url(:medium), @postcard.photo.url(:medium), {:class=>"images"}, :title => @postcard.title) %>
+		<%= lightbox_image_tag(@postcard.photo.url(:medium), @postcard.photo.url(:medium), {:class=>"images"}, :title => @postcard.title) %>
 	
-	<%= @postcard.description %>
-	<div class="postcard-meta">
-	  <h3>About the placement</h3>
-	  <strong>Organisation:</strong><%=h @postcard.organisation %>&nbsp;(<%= link_to @postcard.url, @postcard.url %>)
-	  <strong>Related Links:</strong><%= render :partial => "links/link", :collection => @postcard.links %>
-	  <h3>Stuff I wish I'd known</h3>
-	  <p><%= @postcard.tips %></p>
+		<%= @postcard.description %>
+		<div class="postcard-meta">
+		<% if logged_in? %>
+			  <h3>About the placement</h3>
+			  <h4>Organisation:</h4>
+				<p><%=h @postcard.organisation %>&nbsp;(<%= link_to @postcard.url, @postcard.url %>)</p>
+			  <h4>Related Links:</h4>
+				<div class="links">
+				<%= render :partial => "links/link", :collection => @postcard.links %>
+				</div>
+			  <h3>Stuff I wish I'd known</h3>
+			  <p><%= @postcard.tips %></p>
+		<% else %>
+			<p class="signup">If you were registered you could see information about the placement. Sign up now</p>
+		<% end %>
+		</div>
 	</div>
-</div>
-<div id="side-bar" class="span-6 last">
-	<div class="related_posts">
-		<h3>Similar postcards</h3>
-		<%= render :partial => "related", :collection => Postcard.find_tagged_with(@postcard.tag_list) %>
+	<div id="side-bar" class="span-6 last">
+		<div class="related_posts">
+			<h3>Similar postcards</h3>
+			<%= render :partial => "related", :collection => Postcard.find_tagged_with(@postcard.tag_list) %>
+		</div>
+		<div class="tag_cloud">
+			<h3>Tag cloud</h3>
+			 <% tag_cloud @tags, %w(css1 css2 css3 css4) do |tag, css_class| %>
+			    <%= link_to tag, tag_path(:id => tag.name), :class => css_class %>
+			  <% end %>
+		</div>
 	</div>
-	<div class="tag_cloud">
-		<h3>Tag cloud</h3>
-		 <% tag_cloud @tags, %w(css1 css2 css3 css4) do |tag, css_class| %>
-		    <%= link_to tag, tag_path(:id => tag.name), :class => css_class %>
-		  <% end %>
-	</div>
+	<div class="spacer"></div>
 </div>

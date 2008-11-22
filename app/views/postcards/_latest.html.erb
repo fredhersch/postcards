@@ -1,6 +1,11 @@
-<% div_for(latest, :class => "span-14") do %>
-	<div class="image span-8"><%= image_tag latest.photo.url(:medium) %></div>
-	<div class="post-data span-6 last">
+<% div_for(latest, :class => "span-15") do %>
+	<div class="span-4">
+		<span class="date"><%= latest.created_at.strftime("%d %B %Y, %H:%M") %></span>
+	</div>
+	<div class="image span-4">
+		<%= image_tag latest.photo.url(:thumb) %>		
+	</div>
+	<div class="post-data span-7 last">
 		<h3><%= link_to latest.title, latest %></h3>
 		<p class="desc"><%= latest.description[0, 250] %>... <%= link_to "Read more", latest %>
 		<p>Submitted by: <%= latest.user.login %></p>
