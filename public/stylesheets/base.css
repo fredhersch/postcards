@@ -424,8 +424,8 @@ p.delete:hover {
 #slider ul.navigation {
 	list-style-type: none;
 	position: absolute;
-	top: 410px;
-	left: 645px;
+	top: 420px;
+	left: 570px;
 	z-index: 1;
 }
 
@@ -445,15 +445,17 @@ p.delete:hover {
 
 .image-wrapper img {
 	width: 590px;
-	height: 250px;
+	/*height: 250px;*/
 	
 }
 
 .image-wrapper { 
     float: left; 
-    width: 600px; 
+    width: 600px;
+	height: 250px; 
     position: relative; 
     margin: 0; 
+	overflow: hidden;
 }
 
 div.text-over-image {

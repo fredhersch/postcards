@@ -25,9 +25,9 @@
 				<!-- globalhome / USyd logo -->
 				<h1>global doctor</h1>
 				<div id="search">
-					<% form_tag(search_path, :method => "get") do %>					  
-					  <%= text_field_tag(:q) %>
-					  <%= submit_tag("Search") %>
+					<% form_tag(postcards_path, :method => "get") do %>					  
+					  <%= text_field_tag(:search, params[:search]) %>
+					  <%= submit_tag("Search", :name => nil) %>
 					<% end %>
 					<script type="text/javascript" >
 					        // <![CDATA[

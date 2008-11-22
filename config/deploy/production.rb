@@ -66,10 +66,10 @@ namespace :deploy do
     desc "Symlink the upload directories"
      task :before_symlink do
        run "mkdir -p #{shared_path}/uploads"
-       run "ln -s #{shared_path}/uploads #{release_path}/public/uploads"
+       run "ln -s #{shared_path}/uploads #{release_path}/public/photos"
      end
   end
-    
+     
   # Restart passenger on deploy
   # Commented out as not using passenger
   # desc "Restarting mod_rails with restart.txt"
@@ -81,9 +81,10 @@ namespace :deploy do
   #  desc "#{t} task is a no-op with mod_rails"
   #  task t, :roles => :app do ; end
   #end
-  # desc "restart mongrel"
-  # task :restart, :roles => :app, :except => { :no_release => true } do
-  #    top.deprec.mongrel.restart
-  #end
+  desc "restart mongrel"
+   task :restart, :roles => :app, :except => { :no_release => true } do
+      top.deprec.mongrel.restart
+  end
+  
   
 end

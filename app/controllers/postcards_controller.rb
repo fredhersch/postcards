@@ -27,15 +27,19 @@ class PostcardsController < ApplicationController
       
   def index
     #@count = Postcard.find(:all, :conditions => 'approved = 1').size
-    #@postcards = Postcard.search(params[:search], params[:page])
+    @postcards = Postcard.search(params[:search], params[:page])
     #@postcards = Postcard.paginate :all, :page => params[:page], :order => 'updated_at DESC'
-    @approved = '1'
-    @postcards = Postcard.find(:all, :order => 'id DESC', :conditions => ['approved = ?', @approved], :limit => 5)
-    @tags = Postcard.tag_counts
+    # @approved = '1'
+    # @postcards = Postcard.find(:all, :order => 'id DESC', :conditions => ['approved = ?', @approved], :limit => 5)
+    # @tags = Postcard.tag_counts
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @postcards }
+      if params[:search]
+        format.html { redirect_to(postcards_path)}
+      else
+        format.html # index.html.erb
+        format.xml  { render :xml => @postcards }
+      end
     end
   end
   

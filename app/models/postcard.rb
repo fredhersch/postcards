@@ -1,6 +1,9 @@
 class Postcard < ActiveRecord::Base
 
-  has_attached_file :photo, :styles => { :original => '800x600>', :medium => "300x300>", :thumb => "150x150>", :small => "100x100" }
+  has_attached_file :photo, 
+    :path => ":rails_root/public/:attachment/:id/:style/:basename.:extension",
+    :styles => { :original => '800x600>', :medium => "300x300>", :thumb => "150x150>", :small => "100x100",
+      :feature => '600x250'  }
   acts_as_taggable
   belongs_to :user
   has_many  :votes
@@ -37,8 +40,13 @@ class Postcard < ActiveRecord::Base
   end
   
   def self.search(search, page)
-    paginate :per_page => 10, :page => page,
-      :conditions => ['approved = 1 AND title like ?', "%#{search}%"], :order => 'title'
+    @approved = '1'
+    if search
+      paginate :per_page => 10, :page => page,
+        :conditions => ['approved = 1 AND title like ?', "%#{search}%"], :order => 'title'
+    else
+      find(:all, :order => 'id DESC', :conditions => ['approved = ?', @approved], :limit => 5)
+    end
   end
   
   def self.per_page

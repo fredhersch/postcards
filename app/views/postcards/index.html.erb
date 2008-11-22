@@ -4,9 +4,9 @@
 	<div class="wrapper">
 		<div id="slider" class="span-15">
 			<ul class="navigation">
-				<%= render :partial => 'feature_nav', :collection => @postcards %>
+				<%= render :partial => 'feature_nav', :collection => latest_postcards %>
 			</ul>
-			<%= render :partial => 'feature', :collection => @postcards %>
+			<%= render :partial => 'feature', :collection => latest_postcards %>
 		</div>
 		<div class="about span-6 last">
 			<h2>Where's your stethescope been?</h2>
@@ -22,7 +22,6 @@
 			<!--<h2>Latest from the global doctor</h2>
 			<p>Something here about something</p>-->
 			<h2 class="title">postcards from the global doctor</h2>
-			<% @postcards = latest_postcards %>
 			<%= render :partial => 'latest', :collection => @postcards %>
 		</div>
 		<div class="sidebar span-7 last">
