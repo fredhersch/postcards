@@ -12,8 +12,9 @@
 			</li>
 			<li>Country<br/>
 				<%= country_select(:postcard, :country) %>
+				<!--<= f.text_field :country %>-->
 			</li>
-			<li><%= f.label	:location%><br />
+			<li><%= f.label	:location %><br />
 				<%= f.text_field :location %>
 			</li>
 			<li>
@@ -23,9 +24,19 @@
 		</ol>
 		<!-- auto complete tags -->
 		<ol>
+			<!--<li>
+				< unless @categories.empty? %>
+					<label for="categories">Categories</label><br/>
+				        <%= link_to 'Category', {:controller => 'categories' }  %><br/>
+				        <select name="postcard[category_ids][]">				         
+				        <%= options_from_collection_for_select( @categories, :id, :name) %><br/><br/>
+				        </select>
+				< end %>
+			</li>-->
 			<li>
 				<label for="tags">Tags</label><br/>
-				<%= text_field_with_auto_complete :postcard, :tag_list, { :size => 50 }, { :url => formatted_tags_path(:js), :method => :get, :tokens => ',' } %>  
+				<%= f.text_field :tag_list %>
+				<!--<= text_field_with_auto_complete :postcard, :tag_list, { :size => 50 }, { :url => formatted_tags_path(:js), :method => :get, :tokens => ',' } >-->
 			</li>
 		</ol>
 	</fieldset>

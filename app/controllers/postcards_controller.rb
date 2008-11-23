@@ -19,7 +19,8 @@ class PostcardsController < ApplicationController
     :width => "600",
     :height => "200"                            
   }
-  #auto_complete_for :postcard, :organisation
+  auto_complete_for :postcard, :title
+
    
   def tag_cloud
     @tags = Postcard.tag_counts
@@ -70,6 +71,8 @@ class PostcardsController < ApplicationController
   # GET /postcards/new.xml
   def new
     @postcard = Postcard.new
+    # Added for categories
+    #@categories = Category.find(:all)
     1.times { @postcard.links.build }
     @selected_country = "Australia"
     
@@ -82,6 +85,8 @@ class PostcardsController < ApplicationController
   # GET /postcards/1/edit
   def edit
     @postcard = Postcard.find(params[:id])
+    # Added categories
+    #@categories = Category.find(:all)
   end
 
   # POST /postcards

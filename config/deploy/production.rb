@@ -66,7 +66,7 @@ namespace :deploy do
     desc "Symlink the upload directories"
      task :before_symlink do
        run "mkdir -p #{shared_path}/uploads"
-       run "ln -s #{shared_path}/uploads #{release_path}/public/photos"
+       run "ln -s #{shared_path}/system/uploads #{release_path}/public/photos"
      end
   end
      

@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :categories
+
   map.resources :links
 
   # change to route to make comments under postcards

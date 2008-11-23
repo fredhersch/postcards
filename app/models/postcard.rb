@@ -1,13 +1,14 @@
 class Postcard < ActiveRecord::Base
 
   has_attached_file :photo, 
-    :path => ":rails_root/public/:attachment/:id/:style/:basename.:extension",
+    :path => "/shared/system/uploads/:attachment/:id/:style/:basename.:extension",
     :styles => { :original => '800x600>', :medium => "300x300>", :thumb => "150x150>", :small => "100x100",
       :feature => '600x250'  }
   acts_as_taggable
   belongs_to :user
   has_many  :votes
   has_many  :links
+  has_and_belongs_to_many :categories
   after_update  :save_links
 
   validates_presence_of :title, :description

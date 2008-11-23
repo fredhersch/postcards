@@ -17,11 +17,18 @@
 	    <![endif]-->
 
 		<%= include_tiny_mce_if_needed %>
-		<%= javascript_include_tag "jquery", "jquery.idTabs.min", "jquery-ui", "jrails" %>
+		<%= javascript_include_tag "jquery", "application", "jquery.idTabs.min", "jquery.autocomplete", "jrails" %>
 	</head>
 	<body>
 		<div id="header">
 			<div class="wrapper">
+				<% if logged_in? %>
+				<div id="current_user_links">
+					<span class="current_user">Welcome <%= current_user.login %></span>
+					<span>&nbsp;|&nbsp;</span>
+					<span class="logout"><%= link_to 'Logout', logout_path %></span>
+				</div>
+				<% end %>
 				<!-- globalhome / USyd logo -->
 				<h1>global doctor</h1>
 				<div id="search">
@@ -31,7 +38,7 @@
 					<% end %>
 					<script type="text/javascript" >
 					        // <![CDATA[
-					        focusForm('Search');
+					        //focusForm('Search');
 					        // ]]>
 					</script>
 				</div>
@@ -47,13 +54,9 @@
 					<li><%= link_to "Admin", admin_postcards_path() %></li>
 					<% end %>
 					<li><%= link_to "About", "/about" %></li>
-					<% if !logged_in? %><li><%= link_to 'Signup', signup_path %></li><% end %>
 				</ul>
 				<ul id="signup" class="span-6">
-					<% if logged_in? %>
-						<li>Welcome <%= current_user.login %></li>
-						<li><%= link_to 'Logout', logout_path %></li>
-					<% else %>
+					<% if !logged_in? %>
 						<li><%= link_to 'Login', login_path %></li>
 						<li><%= link_to 'Signup', signup_path %></li>
 					<% end %>

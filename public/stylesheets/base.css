@@ -21,6 +21,24 @@ html body {
 	width: 100%;
 }
 
+#current_user_links {
+	width: 250px;
+	float: right;
+	margin: 0;
+	padding: 5px;
+	color: #fff;
+}
+
+#current_user_links a:link, #current_user_links a:visited {
+	color: #fff;
+	text-decoration: none;
+}
+
+#current_user_links a:hover, #current_user_links a:active {
+	font-weight: bold;
+	color: #fff;
+}
+
 #search {
 	clear: both;
 }
@@ -424,7 +442,7 @@ p.delete:hover {
 #slider ul.navigation {
 	list-style-type: none;
 	position: absolute;
-	top: 420px;
+	top: 400px;
 	left: 570px;
 	z-index: 1;
 }
